@@ -1,9 +1,9 @@
-import type { Author } from "@/interfaces/Author";
+import type { Author } from "@/interfaces/author";
 
 export interface Question {
   author: Author;
   question: string;
-  description: string;
+  description?: string;
   picture?: string;
   answer: string;
 }
