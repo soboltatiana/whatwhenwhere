@@ -3,6 +3,7 @@ import { Question } from "@/interfaces/question";
 import { ref } from "vue";
 defineProps<{ question: Question }>();
 
+const premiseVisible = ref(false);
 const questionVisible = ref(false);
 const answerVisible = ref(false);
 </script>
@@ -20,9 +21,17 @@ const answerVisible = ref(false);
         <BImg :src="question.author.picture"></BImg>
       </div>
       <div class="right">
-        <BCard class="description">
-          {{ question.description }}
-        </BCard>
+        <BButton
+          class="mt-5"
+          variant="outline-secondary"
+          @click="premiseVisible = !premiseVisible"
+          >Premisă</BButton
+        >
+        <BCollapse id="premise" :visible="premiseVisible">
+          <BCard class="mt-3">
+            <p class="description">{{ question.description }}</p>
+          </BCard>
+        </BCollapse>
         <BButton
           class="mt-5"
           variant="outline-primary"
@@ -30,7 +39,7 @@ const answerVisible = ref(false);
           >Întrebare</BButton
         >
         <BCollapse id="question" :visible="questionVisible">
-          <p class="big-text">{{ question.question }}</p>
+          <p class="mt-3 big-text">{{ question.question }}</p>
         </BCollapse>
         <BButton
           class="mt-5"
@@ -39,7 +48,7 @@ const answerVisible = ref(false);
           >Răspuns</BButton
         >
         <BCollapse id="question" :visible="answerVisible">
-          <p class="big-text">{{ question.answer }}</p>
+          <p class="mt-3 big-text">{{ question.answer }}</p>
         </BCollapse>
       </div>
     </div>
@@ -89,11 +98,11 @@ const answerVisible = ref(false);
     align-items: start;
 
     .description {
+      margin-top: 30px;
       font-size: 28px;
     }
 
     .big-text {
-      margin-top: 30px;
       font-size: 36px;
     }
   }
