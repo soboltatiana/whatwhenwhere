@@ -1,4 +1,4 @@
 export interface Answer {
   text?: string;
-  picture?: string;
+  pictures?: Array<string>;
 }

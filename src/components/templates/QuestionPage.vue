@@ -9,7 +9,14 @@ const answerVisible = ref(false);
 
 const questionImagesClass = computed(() => ({
   images: props.question.pictures?.length === 1,
-  "images-grid": props.question.pictures?.length > 1,
+  "images-grid": props.question.pictures && props.question.pictures?.length > 1,
+}));
+
+const answerImagesClass = computed(() => ({
+  images: props.question.answer.pictures?.length === 1,
+  "images-grid":
+    props.question.answer.pictures &&
+    props.question.answer.pictures?.length > 1,
 }));
 </script>
 
@@ -35,9 +42,12 @@ const questionImagesClass = computed(() => ({
         <BCollapse id="premise" :visible="premiseVisible">
           <div>
             <BCard class="mt-3" v-if="question.description">
-              <p class="description">{{ question.description }}</p>
+              <p class="description" v-html="question.description" />
             </BCard>
-            <div :class="questionImagesClass" v-if="question.pictures">
+            <div
+              :class="questionImagesClass"
+              v-if="question.pictures && question.pictures.length > 0"
+            >
               <BImg
                 v-for="(picture, index) in question.pictures"
                 :key="index"
@@ -70,11 +80,18 @@ const questionImagesClass = computed(() => ({
               class="big-text"
               v-html="question.answer.text"
             />
-            <div class="images">
+            <div
+              :class="answerImagesClass"
+              v-if="
+                question.answer.pictures && question.answer.pictures.length > 0
+              "
+            >
               <BImg
-                v-if="question.answer.picture"
+                v-for="(picture, index) in question.answer.pictures"
+                :key="index"
                 thumbnail="true"
-                :src="question.answer.picture"
+                :src="picture"
+                sizes=""
               />
             </div>
           </div>
@@ -113,7 +130,7 @@ const questionImagesClass = computed(() => ({
   gap: 40px;
 
   .left {
-    width: 25%;
+    width: 35%;
 
     img {
       width: 100%;
@@ -121,14 +138,16 @@ const questionImagesClass = computed(() => ({
   }
 
   .right {
-    width: 75%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: start;
 
     .images-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      margin-top: 20px;
     }
 
     .images {
