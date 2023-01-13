@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { Question } from "@/interfaces/question";
-import { ref } from "vue";
-defineProps<{ question: Question }>();
+import { computed, ref } from "vue";
+const props = defineProps<{ question: Question }>();
 
 const premiseVisible = ref(false);
 const questionVisible = ref(false);
 const answerVisible = ref(false);
+
+const questionImagesClass = computed(() => ({
+  images: props.question.pictures?.length === 1,
+  "images-grid": props.question.pictures?.length > 1,
+}));
 </script>
 
 <template>
@@ -28,9 +33,20 @@ const answerVisible = ref(false);
           >Premisă</BButton
         >
         <BCollapse id="premise" :visible="premiseVisible">
-          <BCard class="mt-3">
-            <p class="description">{{ question.description }}</p>
-          </BCard>
+          <div>
+            <BCard class="mt-3" v-if="question.description">
+              <p class="description">{{ question.description }}</p>
+            </BCard>
+            <div :class="questionImagesClass" v-if="question.pictures">
+              <BImg
+                v-for="(picture, index) in question.pictures"
+                :key="index"
+                thumbnail="true"
+                :src="picture"
+                sizes=""
+              />
+            </div>
+          </div>
         </BCollapse>
         <BButton
           class="mt-5"
@@ -48,7 +64,20 @@ const answerVisible = ref(false);
           >Răspuns</BButton
         >
         <BCollapse id="question" :visible="answerVisible">
-          <p class="mt-3 big-text">{{ question.answer }}</p>
+          <div class="mt-3">
+            <p
+              v-if="question.answer.text"
+              class="big-text"
+              v-html="question.answer.text"
+            />
+            <div class="images">
+              <BImg
+                v-if="question.answer.picture"
+                thumbnail="true"
+                :src="question.answer.picture"
+              />
+            </div>
+          </div>
         </BCollapse>
       </div>
     </div>
@@ -84,7 +113,7 @@ const answerVisible = ref(false);
   gap: 40px;
 
   .left {
-    width: 35%;
+    width: 25%;
 
     img {
       width: 100%;
@@ -92,10 +121,23 @@ const answerVisible = ref(false);
   }
 
   .right {
-    width: 65%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: start;
+
+    .images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .images {
+      height: 600px;
+
+      img {
+        height: 100%;
+      }
+    }
 
     .description {
       margin-top: 30px;

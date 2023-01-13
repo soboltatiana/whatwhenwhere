@@ -9,88 +9,45 @@ export const questions: Array<Question> = [
     question: "De ce anume așa începe nuvela?",
     description:
       "Ca să începem cu începutul, Marley murise. În această privință nu încăpea îndoială.",
-    answer:
-      "Ca să nu existe nici o îndoială că fantoma lui Marley este într-adevăr o fantomă.",
+    answer: {
+      text: "Ca să nu existe nici o îndoială că fantoma lui Marley este într-adevăr o fantomă.",
+    },
   },
   {
     author: {
-      name: "Eben",
-      picture: "/logo.png",
+      name: "Spiritul Crăciunului din trecut",
+      picture: "/answers/ghost-of-christmas-past-2.JPG",
     },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
+    question: "Ce lecție asociată fiecarei viziuni a învățat Scrooge?",
+    description: null,
+    pictures: [
+      "/questions/past-vision-1.jpg",
+      "/questions/past-vision-2.jpg",
+      "/questions/past-vision-3.jpg",
+      "/questions/past-vision-4.jpg",
+      "/questions/past-vision-5.jpg",
+    ],
+    answer: {
+      text:
+        "1. toleranța către cei mai puțin norocoși decât el<br/>" +
+        "2. importanța familiei<br/>" +
+        "3. bunătate și generozitatea către subalterni<br/>" +
+        "4. importanța iubirii<br/>" +
+        "5. cum lipsa iubirii, familiei, pritenilor l-a lăsat pe Scrooge singur pe lume",
+    },
   },
   {
     author: {
-      name: "Eben",
-      picture: "/logo.png",
+      name: "Anastasia Arkhipova",
+      picture: "/players/anastasia-arkhipova.jpg",
     },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
-  },
-  {
-    author: {
-      name: "Eben",
-      picture: "/logo.png",
+    question:
+      "Cu ce obiect din poveste autorul aseamănă acest corn al abundenței?",
+    description:
+      "Cornul abundenței desemnează simbolul belșugului. Este reprezentat printr-un corn umplut cu flori și fructe.",
+    pictures: ["/questions/cornul-abundentei.jpg"],
+    answer: {
+      picture: "/answers/cornul-abundentei-craciunul-din-prezent.jpg",
     },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
-  },
-  {
-    author: {
-      name: "Eben",
-      picture: "/logo.png",
-    },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
-  },
-  {
-    author: {
-      name: "Eben",
-      picture: "/logo.png",
-    },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
-  },
-  {
-    author: {
-      name: "Eben",
-      picture: "/logo.png",
-    },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
-  },
-  {
-    author: {
-      name: "Eben",
-      picture: "/logo.png",
-    },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
-  },
-  {
-    author: {
-      name: "Eben",
-      picture: "/logo.png",
-    },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
-  },
-  {
-    author: {
-      name: "Eben",
-      picture: "/logo.png",
-    },
-    question: "What is Scrooge name?",
-    description: "You read the book",
-    answer: "Ebenezer",
   },
 ];
