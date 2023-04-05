@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Question } from "@/interfaces/question";
+import type { Question } from "@/interfaces/question";
 import { computed, ref } from "vue";
 const props = defineProps<{ question: Question }>();
 
@@ -30,7 +30,7 @@ const answerImagesClass = computed(() => ({
     </div>
     <div class="content">
       <div class="left">
-        <BImg :src="question.author.picture"></BImg>
+        <BImg v-if="question.author" :src="question.author.picture"></BImg>
       </div>
       <div class="right">
         <BButton

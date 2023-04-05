@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { BImg } from "bootstrap-vue-3";
-import { questions } from "@/data/questions";
+import type { Question } from "@/interfaces/question";
+defineProps<{ questions: Array<Question> }>();
 </script>
 
 <template>
@@ -12,7 +13,10 @@ import { questions } from "@/data/questions";
       <div
         v-for="(question, index) in questions"
         :key="index"
-        class="question-card"
+        :class="{
+          ['question-card']: true,
+          ['question-card--disabled']: !question.active,
+        }"
         @click="$emit('select', index)"
       >
         {{ index + 1 }}
@@ -54,6 +58,18 @@ import { questions } from "@/data/questions";
 
   &:active {
     background-color: #3e5870;
+  }
+
+  &--disabled {
+    background-color: gray;
+
+    &:hover {
+      background-color: gray;
+    }
+
+    &:active {
+      background-color: gray;
+    }
   }
 }
 </style>

@@ -7,4 +7,5 @@ export interface Question {
   description?: string;
   pictures?: Array<string>;
   answer: Answer;
+  active: boolean;
 }

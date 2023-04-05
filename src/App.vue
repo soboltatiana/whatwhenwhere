@@ -12,10 +12,12 @@ enum PagesEnum {
 
 const currentPage = ref(PagesEnum.HomePage);
 const selectedQuestion = ref<Question>();
+const activeQuestions = ref(questions);
 
 function selectQuestion(index: number) {
-  selectedQuestion.value = questions[index];
+  selectedQuestion.value = activeQuestions.value[index];
   showQuestionPage();
+  activeQuestions.value[index].active = false;
 }
 
 function showHomePage() {
@@ -28,9 +30,13 @@ function showQuestionPage() {
 </script>
 
 <template>
-  <HomePage v-if="currentPage === 'homePage'" @select="selectQuestion" />
+  <HomePage
+    v-if="currentPage === 'homePage'"
+    @select="selectQuestion"
+    :questions="activeQuestions"
+  />
   <QuestionPage
-    v-if="currentPage === 'questionPage'"
+    v-if="currentPage === 'questionPage' && selectedQuestion"
     :question="selectedQuestion"
     @back="showHomePage"
   />
