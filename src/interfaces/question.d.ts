@@ -1,8 +1,10 @@
-import type { Author } from "@/interfaces/Author";
+import type { Author } from "@/interfaces/author";
+import type { Answer } from "@/interfaces/answer";
 export interface Question {
   author: Author;
   question: string;
-  description: string;
-  picture?: string;
-  answer: string;
+  description?: string;
+  pictures?: Array<string>;
+  answer: Answer;
+  active: boolean;
 }
